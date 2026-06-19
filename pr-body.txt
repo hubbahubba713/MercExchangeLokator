@@ -1,0 +1,9 @@
+﻿Archive native SnaptureCLI into `SnaptureCLI.archived` and switch the project to the managed `SnaptureShim` fallback to avoid the ATL/C++ dependency.
+
+Changes:
+- Archived native source into `SnaptureCLI.archived`
+- Removed native project from solution
+- Added `SnaptureShim` (managed fallback)
+- Updated `README.md` with archive notes
+
+See branch `archive/snapturecli-upstream` on my fork for details.

@@ -1,0 +1,32 @@
+name: CI Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Show MSBuild
+      shell: powershell
+      run: |
+        Write-Host "where msbuild:"; where msbuild || Write-Host "msbuild not on PATH"
+        Write-Host "vswhere info:"; & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -property installationPath
+
+    - name: Build solution
+      shell: powershell
+      run: |
+        msbuild MercExchangeLokator.sln /t:Rebuild /p:Configuration=Release /p:Platform="Any CPU" /v:minimal
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: MercExchangeLokator-build
+        path: |
+          **\bin\Release\
+          **\bin\Debug\
