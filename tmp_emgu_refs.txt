@@ -1,0 +1,3 @@
+Planned references:
+C:\Users\LENOVO\.nuget\packages\emgu.cv\4.7.0.5276\lib\netstandard2.0\Emgu.CV.dll
+C:\Users\LENOVO\.nuget\packages\emgu.cv.bitmap\4.7.0.5276\lib\netstandard2.0\Emgu.CV.Bitmap.dll
