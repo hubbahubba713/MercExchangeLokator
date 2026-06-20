@@ -21,6 +21,7 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 
 using com.HellScape.ScreenCapture;
+using System.Media;
 using System.Reflection;
 
 namespace MercExchangeLokator
@@ -49,6 +50,8 @@ namespace MercExchangeLokator
         RenderCanvas RenderCanvas = null;
 
         bool useOptimizedMethod = true;
+        bool enableSoundNotification = true;
+        bool wasTargetFound = false;
 
         public string basePath  => System.AppDomain.CurrentDomain.BaseDirectory;
         public string refFile => $@"{basePath}Images\Ref\merc_exchange_sample02.png";
@@ -76,6 +79,7 @@ namespace MercExchangeLokator
 
         private void Lokator_onMercExchangeNotFound(object sender, MercExchangeFoundArguments e)
         {
+            wasTargetFound = false;
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
                RenderCanvas.Canvas01.Children.Clear();
@@ -85,6 +89,11 @@ namespace MercExchangeLokator
         bool isRendering = false;
         private void Lokator_onMercExchangeFound(object sender, MercExchangeFoundArguments e)
         {
+            if (enableSoundNotification && !wasTargetFound)
+            {
+                SystemSounds.Exclamation.Play();
+            }
+            wasTargetFound = true;
 
             var match = e.Location;
             
