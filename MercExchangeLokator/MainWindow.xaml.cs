@@ -71,6 +71,12 @@ namespace MercExchangeLokator
         double matchingTolerence = 0.40;
         const double minMatchingTolerance = 0.30;
         const double maxMatchingTolerance = 0.55;
+        bool isThresholdUiUpdating = false;
+
+        string thresholdStateFilePath => Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "MercExchangeLokator",
+            "threshold.txt");
 
         public double ScaleFactor
         {
@@ -380,6 +386,7 @@ namespace MercExchangeLokator
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Topmost = true;
+            LoadThresholdFromDisk();
             UpdateThresholdUi();
           
             refImage = new Image<Bgr, byte>(refFile);
@@ -476,6 +483,9 @@ namespace MercExchangeLokator
 
         private void ThresholdSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            if (isThresholdUiUpdating)
+                return;
+
             double next = Math.Round(e.NewValue, 2);
             if (next < minMatchingTolerance)
                 next = minMatchingTolerance;
@@ -484,15 +494,67 @@ namespace MercExchangeLokator
 
             matchingTolerence = next;
             UpdateThresholdUi();
+            SaveThresholdToDisk();
         }
 
         private void UpdateThresholdUi()
         {
+            isThresholdUiUpdating = true;
             if (ThresholdValueText != null)
                 ThresholdValueText.Text = matchingTolerence.ToString("0.00");
 
             if (ThresholdSlider != null && Math.Abs(ThresholdSlider.Value - matchingTolerence) > 0.0001)
                 ThresholdSlider.Value = matchingTolerence;
+            isThresholdUiUpdating = false;
+        }
+
+        private void ThresholdResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            matchingTolerence = 0.40;
+            UpdateThresholdUi();
+            SaveThresholdToDisk();
+        }
+
+        private void SaveThresholdToDisk()
+        {
+            try
+            {
+                var directory = Path.GetDirectoryName(thresholdStateFilePath);
+                if (!Directory.Exists(directory))
+                    Directory.CreateDirectory(directory);
+
+                File.WriteAllText(thresholdStateFilePath, matchingTolerence.ToString("0.00"));
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+
+        private void LoadThresholdFromDisk()
+        {
+            try
+            {
+                if (!File.Exists(thresholdStateFilePath))
+                    return;
+
+                var value = File.ReadAllText(thresholdStateFilePath).Trim();
+                double parsed;
+                if (!double.TryParse(value, out parsed))
+                    return;
+
+                parsed = Math.Round(parsed, 2);
+                if (parsed < minMatchingTolerance)
+                    parsed = minMatchingTolerance;
+                if (parsed > maxMatchingTolerance)
+                    parsed = maxMatchingTolerance;
+
+                matchingTolerence = parsed;
+            }
+            catch
+            {
+                // ignored
+            }
         }
 
         private void TryPlayAlertSound()

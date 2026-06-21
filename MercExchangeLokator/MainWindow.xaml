@@ -47,6 +47,7 @@
                             Value="0.40"
                             ValueChanged="ThresholdSlider_ValueChanged"/>
                     <TextBlock x:Name="ThresholdValueText" VerticalAlignment="Center" Margin="4,0,6,0" Text="0.40"/>
+                    <Button x:Name="ThresholdResetButton" Height="20" Margin="0,0,4,0" Padding="6,0" Content="Reset 0.40" Click="ThresholdResetButton_Click"/>
                 </ToolBar>
             </ToolBarPanel>
         </DockPanel>
