@@ -23,6 +23,8 @@ using Emgu.CV.Structure;
 using com.HellScape.ScreenCapture;
 using System.Media;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.IO;
 
 namespace MercExchangeLokator
 {
@@ -34,8 +36,6 @@ namespace MercExchangeLokator
     
     public partial class MainWindow : Window
     {
-        //--- grab screen fast.
-        //--- check for merchant exchange.
         //--- found it, render rectangle.
         bool bCaptureStopping = false;
         bool bCapturing = false;
@@ -43,6 +43,8 @@ namespace MercExchangeLokator
 
         Image<Bgr, byte> refImage = null;
         Image<Bgr, byte> scaledRefImage = null;
+        Image<Bgr, byte> refImageAlt = null;
+        Image<Bgr, byte> scaledRefImageAlt = null;
         System.Drawing.Size originalImageSize = System.Drawing.Size.Empty;
         System.Drawing.Size scaledImageSize = System.Drawing.Size.Empty;
         System.Threading.Thread capturingThread;
@@ -51,17 +53,24 @@ namespace MercExchangeLokator
 
         bool useOptimizedMethod = true;
         bool enableSoundNotification = true;
+        volatile bool isMatchingBusy = false;
         bool wasTargetFound = false;
+        volatile bool isProcessingFrame = false;
+        DateTime lastAlertUtc = DateTime.MinValue;
+        const int alertCooldownMs = 1500;
 
         public string basePath  => System.AppDomain.CurrentDomain.BaseDirectory;
         public string refFile => $@"{basePath}Images\Ref\merc_exchange_sample02.png";
+        public string refFileAlt => $@"{basePath}Images\Ref\merc_exchange_sample.png";
         string debugSaveOutputPath => $@"{basePath}Tests\";
         
         private double defaultScaleFactor = 1.0f;
 
         Lokator Lokator { get; set; }
 
-        double matchingTolerence = 0.6;
+        double matchingTolerence = 0.40;
+        const double minMatchingTolerance = 0.30;
+        const double maxMatchingTolerance = 0.55;
 
         public double ScaleFactor
         {
@@ -89,10 +98,25 @@ namespace MercExchangeLokator
         bool isRendering = false;
         private void Lokator_onMercExchangeFound(object sender, MercExchangeFoundArguments e)
         {
-            if (enableSoundNotification && !wasTargetFound)
+            bool shouldAlert = false;
+            if (enableSoundNotification)
             {
-                SystemSounds.Exclamation.Play();
+                if (!wasTargetFound)
+                {
+                    shouldAlert = true;
+                }
+                else if ((DateTime.UtcNow - lastAlertUtc).TotalMilliseconds >= alertCooldownMs)
+                {
+                    shouldAlert = true;
+                }
             }
+
+            if (shouldAlert)
+            {
+                TryPlayAlertSound();
+                lastAlertUtc = DateTime.UtcNow;
+            }
+
             wasTargetFound = true;
 
             var match = e.Location;
@@ -110,6 +134,8 @@ namespace MercExchangeLokator
                 my = ((double)match.Y * e.ScaleFactor.Height);
                 match.X = (int)Math.Round(mx);
                 match.Y = (int)Math.Round(my);  
+                match.Width = (int)Math.Round((double)match.Width * e.ScaleFactor.Width);
+                match.Height = (int)Math.Round((double)match.Height * e.ScaleFactor.Height);
             }
 
             RenderCanvas.Dispatcher.BeginInvoke(new Action(() =>
@@ -119,35 +145,46 @@ namespace MercExchangeLokator
                     if (!isRendering)
                     {
                         isRendering = true;
-                        var height = RenderCanvas.Canvas01.ActualHeight * dpiY;
-                        var width = RenderCanvas.Canvas01.ActualWidth * dpiX;
-
-                        WriteableBitmap wb = BitmapFactory.New((int)width, (int)height);
-
-                        using (wb.GetBitmapContext())
+                        try
                         {
-                            var x = match.X / dpiX - 42;
-                            var y = match.Y / dpiY - 8;
-                            var x2 = x + 128;
-                            var y2 = y + 128;
-                            var thickness = 10;
+                            var height = RenderCanvas.Canvas01.ActualHeight * dpiY;
+                            var width = RenderCanvas.Canvas01.ActualWidth * dpiX;
 
-                            wb.DrawRectangle((int)x, (int)y, (int)x2, (int)y2, System.Windows.Media.Colors.Red);
-                            for (var i = 0; i < thickness; i++)
+                            WriteableBitmap wb = BitmapFactory.New((int)width, (int)height);
+
+                            using (wb.GetBitmapContext())
                             {
-                                wb.DrawRectangle((int)x--, (int)y--, (int)x2++, (int)y2++, System.Windows.Media.Colors.Red);
-                            }
+                                var displayX = match.X / dpiX;
+                                var displayY = match.Y / dpiY;
+                                var displayW = Math.Max(24.0, match.Width / dpiX);
+                                var displayH = Math.Max(24.0, match.Height / dpiY);
 
-                            System.Windows.Controls.Image image = new System.Windows.Controls.Image();
-                            image.Source = wb;
+                                var x = displayX - 6;
+                                var y = displayY - 6;
+                                var x2 = displayX + displayW + 6;
+                                var y2 = displayY + displayH + 6;
 
-                            if (RenderCanvas.Canvas01.Children.Count > 1)
-                            {
-                                RenderCanvas.Canvas01.Children.RemoveRange(RenderCanvas.Canvas01.Children.Count, 2);
-                            }
-                            else
+                                x = Math.Max(0, x);
+                                y = Math.Max(0, y);
+                                x2 = Math.Min(width - 1, x2);
+                                y2 = Math.Min(height - 1, y2);
+                                var thickness = 10;
+
+                                wb.DrawRectangle((int)x, (int)y, (int)x2, (int)y2, System.Windows.Media.Colors.Red);
+                                for (var i = 0; i < thickness; i++)
+                                {
+                                    wb.DrawRectangle((int)x--, (int)y--, (int)x2++, (int)y2++, System.Windows.Media.Colors.Red);
+                                }
+
+                                System.Windows.Controls.Image image = new System.Windows.Controls.Image();
+                                image.Source = wb;
+
+                                RenderCanvas.Canvas01.Children.Clear();
                                 RenderCanvas.Canvas01.Children.Add(image);
-
+                            }
+                        }
+                        finally
+                        {
                             isRendering = false;
                         }
                     }
@@ -167,34 +204,69 @@ namespace MercExchangeLokator
 
             Image<Bgr, byte> src = bitmap.ToImage<Bgr, byte>();
 
-            while (true)
+            try
             {
-                double[] minValues, maxValues;
-                System.Drawing.Point[] minLocations, maxLocations;
+                Image<Bgr, byte>[] activeTemplates = useOptimizedMethod
+                    ? new[] { scaledRefImage, scaledRefImageAlt }
+                    : new[] { refImage, refImageAlt };
 
-                using (Image<Gray, float> resultImage = src.MatchTemplate(useOptimizedMethod == true ? scaledRefImage : refImage, TemplateMatchingType.CcoeffNormed))
+                double bestScore = double.MinValue;
+                System.Drawing.Point bestLocation = System.Drawing.Point.Empty;
+                System.Drawing.Size bestTemplateSize = System.Drawing.Size.Empty;
+
+                foreach (var tmpl in activeTemplates)
                 {
+                    if (tmpl == null || tmpl.Width > src.Width || tmpl.Height > src.Height)
+                        continue;
 
-                    //CvInvoke.Threshold(resultImage, resultImage, threshold, 1, ThresholdType.ToZero);
-                    resultImage.MinMax(out minValues, out maxValues, out minLocations, out maxLocations);
-
-                    if (maxValues[0] > threshold)
+                    double[] minV, maxV;
+                    System.Drawing.Point[] minL, maxL;
+                    using (var res = src.MatchTemplate(tmpl, TemplateMatchingType.CcoeffNormed))
                     {
-                        double scaleFactorX = (double)(originalImageSize.Width / scaledImageSize.Width);
-                        double scaleFactorY = (double)(originalImageSize.Height / scaledImageSize.Height);
-                        Lokator.Found(new System.Drawing.Rectangle(
-                            new System.Drawing.Point(maxLocations[0].X, maxLocations[0].Y - 32),
-                            new System.Drawing.Size(128, 128)),
-                            new System.Drawing.SizeF((float)scaleFactorX, (float)scaleFactorY));
-                        break;
+                        res.MinMax(out minV, out maxV, out minL, out maxL);
                     }
-                    else
+                    if (maxV != null && maxV.Length > 0 && maxV[0] > bestScore)
                     {
-                        Lokator.NotFound();
-                        break;
+                        bestScore = maxV[0];
+                        bestLocation = maxL[0];
+                        bestTemplateSize = tmpl.Size;
                     }
                 }
+
+                bool isFound = bestScore >= threshold;
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.Title = $"Merc Exchange Lokator v0.1 | score {bestScore:0.000} | thr {threshold:0.000}";
+                }));
+
+                if (isFound)
+                {
+                    double scaleFactorX = 1.0d;
+                    double scaleFactorY = 1.0d;
+
+                    if (useOptimizedMethod && scaledImageSize.Width > 0 && scaledImageSize.Height > 0)
+                    {
+                        scaleFactorX = (double)originalImageSize.Width / scaledImageSize.Width;
+                        scaleFactorY = (double)originalImageSize.Height / scaledImageSize.Height;
+                    }
+
+                    Lokator.Found(new System.Drawing.Rectangle(bestLocation, bestTemplateSize),
+                        new System.Drawing.SizeF((float)scaleFactorX, (float)scaleFactorY));
+                }
+                else
+                {
+                    Lokator.NotFound();
+                }
             }
+            catch (Exception ex)
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.Title = $"Merc Exchange Lokator v0.1 | error: {ex.Message}";
+                }));
+                Lokator.NotFound();
+            }
+
             src.Dispose();
             src = null;
         }
@@ -211,28 +283,50 @@ namespace MercExchangeLokator
         }
         private async void CapturingThread(Bitmap bitmap)
         {
-            //-- process bitmap
-            Bitmap bclone = (Bitmap)bitmap.Clone();
-            await performTemplateMatchingAsync(bclone, matchingTolerence);
-            bclone.Dispose();
+            if (isProcessingFrame)
+            {
+                bitmap.Dispose();
+                return;
+            }
+            isProcessingFrame = true;
+            try
+            {
+                Bitmap bclone = (Bitmap)bitmap.Clone();
+                await performTemplateMatchingAsync(bclone, matchingTolerence);
+                bclone.Dispose();
+            }
+            finally
+            {
+                isProcessingFrame = false;
+            }
         }
         public void StartCapturing()
         {
             Snapture.onFrameCaptured += Snapture_onFrameCaptured;
-            Snapture.FPS = 30;
+            Snapture.FPS = 60;
             //-- DX is causing memory leaks and eating memory.
             Snapture.Start(FrameCapturingMethod.GDI);
 
             //-- now everything is completely manual when capturing. CLI C++ doesn't do any while loop.
             int sh = Snapture.ScreenHeight;
             int sw = Snapture.ScreenWidth;
-            int x = sw / 2; //-- 1920 
-            int y = sh / 2; //-- 1080
+            int left = 0;
+            int top = (int)Math.Round(sh * 0.12d);
+            int width = sw;
+            int height = (int)Math.Round(sh * 0.78d);
 
-            int left = (int)Math.Round(x * 0.7d);
-            int top = (int)Math.Round(y * 0.6157);
-            int width = (int)Math.Round(x * 0.7906);
-            int height = (int)Math.Round(y * 0.6975);
+            if (top < 0) top = 0;
+            if (top >= sh) top = 0;
+            if (width <= 0 || width > sw) width = sw;
+            if (height <= 0 || height > sh) height = sh;
+
+            if (top + height > sh)
+                height = sh - top;
+
+            if (height <= 0)
+                height = sh;
+
+            System.Diagnostics.Debug.WriteLine($"Capture region: left={left}, top={top}, width={width}, height={height}, screen={sw}x{sh}");
             
             Snapture.CaptureRegion(left,top, width, height);  
 
@@ -286,16 +380,25 @@ namespace MercExchangeLokator
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Topmost = true;
+            UpdateThresholdUi();
           
             refImage = new Image<Bgr, byte>(refFile);
             if (refImage != null)
                 System.Diagnostics.Debug.WriteLine($"Successfully loaded reference image: {refFile}");
+
+            if (File.Exists(refFileAlt))
+            {
+                refImageAlt = new Image<Bgr, byte>(refFileAlt);
+                System.Diagnostics.Debug.WriteLine($"Successfully loaded alternate reference image: {refFileAlt}");
+            }
 
             if(useOptimizedMethod)
             {
                 ScaleFactor = 0.5f;
 
                 scaledRefImage = refImage.Resize(ScaleFactor, Inter.Linear);
+                if (refImageAlt != null)
+                    scaledRefImageAlt = refImageAlt.Resize(ScaleFactor, Inter.Linear);
             }
             RenderCanvas = new RenderCanvas();
             RenderCanvas.Topmost = true;
@@ -370,6 +473,64 @@ namespace MercExchangeLokator
         {
 
         }
+
+        private void ThresholdSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            double next = Math.Round(e.NewValue, 2);
+            if (next < minMatchingTolerance)
+                next = minMatchingTolerance;
+            else if (next > maxMatchingTolerance)
+                next = maxMatchingTolerance;
+
+            matchingTolerence = next;
+            UpdateThresholdUi();
+        }
+
+        private void UpdateThresholdUi()
+        {
+            if (ThresholdValueText != null)
+                ThresholdValueText.Text = matchingTolerence.ToString("0.00");
+
+            if (ThresholdSlider != null && Math.Abs(ThresholdSlider.Value - matchingTolerence) > 0.0001)
+                ThresholdSlider.Value = matchingTolerence;
+        }
+
+        private void TryPlayAlertSound()
+        {
+            try
+            {
+                SystemSounds.Exclamation.Play();
+            }
+            catch
+            {
+                // ignored
+            }
+
+            try
+            {
+                MessageBeep(0xFFFFFFFF);
+            }
+            catch
+            {
+                // ignored
+            }
+
+            // Final fallback for environments where Windows system sounds are disabled.
+            Task.Run(() =>
+            {
+                try
+                {
+                    Console.Beep(1400, 180);
+                }
+                catch
+                {
+                    // ignored
+                }
+            });
+        }
+
+        [DllImport("user32.dll")]
+        private static extern bool MessageBeep(uint uType);
 
         #endregion
     }

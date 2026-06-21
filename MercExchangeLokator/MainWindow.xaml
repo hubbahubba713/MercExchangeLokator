@@ -34,6 +34,19 @@
 
                     </Image>
                     <Image Source="Images/SettingsIcon01.png" Height="16" Width="16" x:Name="SettingsBtn" Margin="5,0" ToolTip="Settings" MouseDown="SettingsBtn_MouseDown"/>
+                    <Separator/>
+                    <TextBlock x:Name="ThresholdLabel" VerticalAlignment="Center" Margin="6,0,4,0" Text="Threshold"/>
+                    <Slider x:Name="ThresholdSlider"
+                            Width="130"
+                            Minimum="0.30"
+                            Maximum="0.55"
+                            SmallChange="0.01"
+                            LargeChange="0.02"
+                            TickFrequency="0.01"
+                            IsSnapToTickEnabled="True"
+                            Value="0.40"
+                            ValueChanged="ThresholdSlider_ValueChanged"/>
+                    <TextBlock x:Name="ThresholdValueText" VerticalAlignment="Center" Margin="4,0,6,0" Text="0.40"/>
                 </ToolBar>
             </ToolBarPanel>
         </DockPanel>
