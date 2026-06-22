@@ -6,18 +6,15 @@ set GIT="C:\Program Files\Git\cmd\git.exe"
 
 echo === Step 1: Stage ALL changes (desktop + mobile project) ===
 cd /d "%REPO%"
-%GIT% add -A
+%GIT% add -A -f
+%GIT% add MobiMercFinder/ -f
+%GIT% add build_and_run.bat setup_mobile.bat -f
 %GIT% status --short
 
 echo.
 echo === Step 2: Commit ===
-%GIT% diff --cached --quiet
-if errorlevel 1 (
-    %GIT% commit -m "Add MobiMercFinder mobile app + sync all desktop changes"
-    echo Committed.
-) else (
-    echo Nothing new to commit.
-)
+%GIT% commit --allow-empty -m "Add MobiMercFinder mobile app + sync all desktop changes"
+echo Committed.
 
 echo.
 echo === Step 3: Push to origin (MercExchangeLokator) ===

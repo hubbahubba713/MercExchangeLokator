@@ -1,0 +1,322 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\scripts\\git-helper.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\git-helper.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\.github\\workflows\\windows-build.yml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\workflows\\windows-build.yml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\MercExchangeLokator.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\MercExchangeLokator.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\MainWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\MainWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\.github\\copilot-instructions.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\copilot-instructions.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\RenderCanvas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\RenderCanvas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\.github\\copilot-instructions.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|MarkdownSecurePreview",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\copilot-instructions.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|MarkdownSecurePreview"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\copilot-instructions.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\RenderCanvas.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\RenderCanvas.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\Lokator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\Lokator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\FoundWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\FoundWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\FoundWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\FoundWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\App.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\App.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\App.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\App.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\App.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\App.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\ActualTool.ruleset||{86B136E6-CC1D-4C8A-B135-8100555B9D17}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MercExchangeLokator\\ActualTool.ruleset||{86B136E6-CC1D-4C8A-B135-8100555B9D17}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "git-helper.ps1",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\scripts\\git-helper.ps1",
+              "RelativeDocumentMoniker": "scripts\\git-helper.ps1",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\scripts\\git-helper.ps1",
+              "RelativeToolTip": "scripts\\git-helper.ps1",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAFsAAAAAAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKISURBVDhPlVLdS1RBFP/dux/JrppKUVoISrRSbVGEBq4Z5ZPRk39A9FYPUQ89CUEv2WOC\u002BFRB9QcUPoQkBItUkAa\u002BpNZ\u002BGO2u3nbdVe/evevuzsydZmY/shehM/fMuefMnN/8zuFoEBIOh7m0\u002BwnnnPX39z/0\u002B/1PaiEVVFYCUEI4pYQzRpU6DlMqY9IuLCzwubk5llhP3lFJNdHlJoHkUl8NtG51XV0BIQShUEj/vrw6GY/Hb6qgEHXqOM6\u002BIFJs28b8/Ly86xUAL2vhvwzEVgXZ8984EzIycg1ng0H0BQLKr4tqoqiND18egqYJV\u002BjMu/fo7OpSvk0YvG4dLvFUhXI44j7hGtKGwW\u002BN3agW2ChB6PqGAV9bB1oCQUxveIHOHkwl3VjxdyN3vA/rh0/A1X0ShTJRjysAxphkrQAi0Rjgb8VyWUfcpoDLg/uXevDoQwTPI9t4Y5QQyxZgJBOkAbCXQc4uw\u002BQexPJlME3H7dkVdDV78HbsHJZWk1jL5pHezCG9kdr8B0BSkCzyxTLSjgcRqwKnrRWZHRuO7sLH1DZ2ShTRtAlqbsHKGJ8bAJTSBoMCZfhB3JiJb2EzmkDs7jBGX33Bs8VfOAgGZzsPapnIb\u002BVmGwD1ZEnhN/Xia7YEtruLIy1NuPJ6UXV\u002B6voZPBjshVe0Lp/NwNfanpK5brmZpinnRwEcE0n3Ojk8onkmaUGlVEKxQhBeXILf58Pj0258\u002B2TgQPuhhExRDCzLqvZArN5mDReabARdBYSaihjylzCgZREs/MRoB8HRbAzcyiGTSkRlrmJQLBZVCZpYVwcHlJUDVZ0r6dV9DafOX8Sa8RQvpieZzFXDMD4\u002BXp3X/5CJiQmRC/wBUOeA8MehIQsAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-06-18T22:52:46.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "windows-build.yml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\.github\\workflows\\windows-build.yml",
+              "RelativeDocumentMoniker": ".github\\workflows\\windows-build.yml",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\.github\\workflows\\windows-build.yml",
+              "RelativeToolTip": ".github\\workflows\\windows-build.yml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2026-06-18T22:50:25.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "copilot-instructions.md [Preview]",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\.github\\copilot-instructions.md",
+              "RelativeDocumentMoniker": ".github\\copilot-instructions.md",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\.github\\copilot-instructions.md [Preview]",
+              "RelativeToolTip": ".github\\copilot-instructions.md [Preview]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-06-17T20:25:59.921Z",
+              "EditorCaption": " [Preview]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "copilot-instructions.md",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\.github\\copilot-instructions.md",
+              "RelativeDocumentMoniker": ".github\\copilot-instructions.md",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\.github\\copilot-instructions.md",
+              "RelativeToolTip": ".github\\copilot-instructions.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-06-17T20:25:28.885Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "copilot-instructions.md",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\copilot-instructions.md",
+              "RelativeDocumentMoniker": "..\\..\\..\\copilot-instructions.md",
+              "ToolTip": "C:\\Users\\LENOVO\\copilot-instructions.md",
+              "RelativeToolTip": "..\\..\\..\\copilot-instructions.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-06-17T20:21:34.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RenderCanvas.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\RenderCanvas.xaml.cs",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\RenderCanvas.xaml.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\RenderCanvas.xaml.cs",
+              "RelativeToolTip": "MercExchangeLokator\\RenderCanvas.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-17T19:56:09.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RenderCanvas.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\RenderCanvas.xaml",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\RenderCanvas.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\RenderCanvas.xaml",
+              "RelativeToolTip": "MercExchangeLokator\\RenderCanvas.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-17T19:56:09.915Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MercExchangeLokator.csproj.user",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\MercExchangeLokator.csproj.user",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\MercExchangeLokator.csproj.user",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\MercExchangeLokator.csproj.user",
+              "RelativeToolTip": "MercExchangeLokator\\MercExchangeLokator.csproj.user",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003464|",
+              "WhenOpened": "2026-06-17T19:56:09.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MercExchangeLokator\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-17T19:56:09.261Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\MainWindow.xaml",
+              "RelativeToolTip": "MercExchangeLokator\\MainWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-17T19:56:09.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Lokator.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\Lokator.cs",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\Lokator.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\Lokator.cs",
+              "RelativeToolTip": "MercExchangeLokator\\Lokator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-17T19:56:09.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "FoundWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\FoundWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\FoundWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\FoundWindow.xaml.cs",
+              "RelativeToolTip": "MercExchangeLokator\\FoundWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-17T19:56:09.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FoundWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\FoundWindow.xaml",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\FoundWindow.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\FoundWindow.xaml",
+              "RelativeToolTip": "MercExchangeLokator\\FoundWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-17T19:56:09.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\App.xaml.cs",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\App.xaml.cs",
+              "RelativeToolTip": "MercExchangeLokator\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-17T19:56:08.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\App.xaml",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\App.xaml",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\App.xaml",
+              "RelativeToolTip": "MercExchangeLokator\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-17T19:56:08.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "app.manifest",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\app.manifest",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\app.manifest",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\app.manifest",
+              "RelativeToolTip": "MercExchangeLokator\\app.manifest",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001203|",
+              "WhenOpened": "2026-06-17T19:56:08.549Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\App.config",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\App.config",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\App.config",
+              "RelativeToolTip": "MercExchangeLokator\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-06-17T19:56:08.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ActualTool.ruleset",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\ActualTool.ruleset",
+              "RelativeDocumentMoniker": "MercExchangeLokator\\ActualTool.ruleset",
+              "ToolTip": "C:\\Users\\LENOVO\\Downloads\\MercExchangeLokator-master (1)\\MercExchangeLokator-master\\MercExchangeLokator\\ActualTool.ruleset",
+              "RelativeToolTip": "MercExchangeLokator\\ActualTool.ruleset",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002641|",
+              "WhenOpened": "2026-06-17T19:56:08.381Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
