@@ -1,0 +1,8 @@
+﻿## Checklist
+- [x] Build: Builds on Windows without Visual C++/ATL (local Debug build succeeded)
+- [ ] Smoke test: Basic app start + capture works (manual verification needed)
+- [x] Docs: `README.md` updated to mention `SnaptureCLI.archived`
+
+Notes:
+- Local `msbuild` produced `MercExchangeLokator\bin\Debug\MercExchangeLokator.exe` successfully.
+- I couldn't add labels or request reviews due to permission limits; I already tagged @phongtnit in a comment asking for review and labels.

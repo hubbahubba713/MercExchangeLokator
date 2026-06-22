@@ -1,9 +1,10 @@
-﻿Archive native SnaptureCLI into `SnaptureCLI.archived` and switch the project to the managed `SnaptureShim` fallback to avoid the ATL/C++ dependency.
+This PR removes the native SnaptureCLI build dependency from the active solution and preserves the original native source in SnaptureCLI.archived/ for future reference.
 
-Changes:
-- Archived native source into `SnaptureCLI.archived`
-- Removed native project from solution
-- Added `SnaptureShim` (managed fallback)
-- Updated `README.md` with archive notes
+It also adds a managed fallback implementation via MercExchangeLokator/SnaptureShim.cs, updates MercExchangeLokator/MercExchangeLokator.csproj to include the shim, and updates documentation so the project can build without requiring the ATL/Visual C++ native toolchain.
 
-See branch `archive/snapturecli-upstream` on my fork for details.
+Changes included:
+- Archive SnaptureCLI source tree under SnaptureCLI.archived/
+- Add managed capture shim in MercExchangeLokator/SnaptureShim.cs
+- Update MercExchangeLokator.sln and MercExchangeLokator.csproj
+- Update README.md to document the archive and fallback
+- Preserve any helper scripts or support files needed by the archived native source

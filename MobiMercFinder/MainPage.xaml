@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobiMercFinder.MainPage"
+             Title="MobiMercFinder"
+             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="12" Padding="16">
+
+            <!-- Status bar -->
+            <Border BackgroundColor="{AppThemeBinding Light=#F0F0F0, Dark=#1E1E1E}"
+                    StrokeShape="RoundRectangle 8"
+                    Padding="12,8">
+                <VerticalStackLayout Spacing="4">
+                    <Label x:Name="StatusLabel"
+                           Text="Idle — load reference images then pick a screenshot."
+                           FontSize="13"
+                           HorizontalTextAlignment="Center"
+                           TextColor="{AppThemeBinding Light=#444, Dark=#CCC}"/>
+                    <Label x:Name="ScoreLabel"
+                           Text="Score: — | Threshold: 0.40"
+                           FontSize="12"
+                           HorizontalTextAlignment="Center"
+                           TextColor="{AppThemeBinding Light=#666, Dark=#AAA}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Reference image controls -->
+            <Label Text="Reference Images" FontSize="14" FontAttributes="Bold"/>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                <Button Grid.Column="0" Text="Load Ref 1" Clicked="LoadRef1_Clicked" BackgroundColor="#512BD4" TextColor="White"/>
+                <Button Grid.Column="1" Text="Load Ref 2" Clicked="LoadRef2_Clicked" BackgroundColor="#512BD4" TextColor="White"/>
+            </Grid>
+            <Label x:Name="RefStatusLabel" Text="No reference images loaded." FontSize="12"
+                   TextColor="{AppThemeBinding Light=#888, Dark=#888}" HorizontalTextAlignment="Center"/>
+
+            <!-- Threshold slider -->
+            <Label Text="Detection Threshold" FontSize="14" FontAttributes="Bold" Margin="0,8,0,0"/>
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                <Label Grid.Column="0" Text="0.30" VerticalOptions="Center" FontSize="12"/>
+                <Slider Grid.Column="1"
+                        x:Name="ThresholdSlider"
+                        Minimum="0.30"
+                        Maximum="0.55"
+                        Value="0.40"
+                        ValueChanged="ThresholdSlider_ValueChanged"
+                        VerticalOptions="Center"/>
+                <Label Grid.Column="2" x:Name="ThresholdValueLabel" Text="0.40" VerticalOptions="Center" FontSize="12" MinimumWidthRequest="36"/>
+            </Grid>
+            <Button Text="Reset Threshold to 0.40" Clicked="ResetThreshold_Clicked"
+                    BackgroundColor="Transparent" TextColor="#512BD4" BorderColor="#512BD4" BorderWidth="1"
+                    HeightRequest="36" FontSize="12"/>
+
+            <!-- Detection zone band -->
+            <Label Text="Detection Zone" FontSize="14" FontAttributes="Bold" Margin="0,8,0,0"/>
+            <Grid ColumnDefinitions="60,*,Auto" ColumnSpacing="8">
+                <Label Grid.Column="0" Text="Top" VerticalOptions="Center" FontSize="12"/>
+                <Slider Grid.Column="1" x:Name="BandTopSlider" Minimum="0.00" Maximum="0.80" Value="0.12"
+                        ValueChanged="BandTopSlider_ValueChanged" VerticalOptions="Center"/>
+                <Label Grid.Column="2" x:Name="BandTopLabel" Text="12%" VerticalOptions="Center" FontSize="12" MinimumWidthRequest="40"/>
+            </Grid>
+            <Grid ColumnDefinitions="60,*,Auto" ColumnSpacing="8">
+                <Label Grid.Column="0" Text="Bottom" VerticalOptions="Center" FontSize="12"/>
+                <Slider Grid.Column="1" x:Name="BandBottomSlider" Minimum="0.20" Maximum="1.00" Value="0.90"
+                        ValueChanged="BandBottomSlider_ValueChanged" VerticalOptions="Center"/>
+                <Label Grid.Column="2" x:Name="BandBottomLabel" Text="90%" VerticalOptions="Center" FontSize="12" MinimumWidthRequest="40"/>
+            </Grid>
+            <Button Text="Reset Zone" Clicked="ResetZone_Clicked"
+                    BackgroundColor="Transparent" TextColor="#512BD4" BorderColor="#512BD4" BorderWidth="1"
+                    HeightRequest="36" FontSize="12"/>
+
+            <!-- Detect actions -->
+            <Label Text="Detect" FontSize="14" FontAttributes="Bold" Margin="0,8,0,0"/>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                <Button Grid.Column="0" Text="Pick Screenshot" Clicked="PickScreenshot_Clicked"
+                        BackgroundColor="#2D7D46" TextColor="White"/>
+                <Button Grid.Column="1" Text="Take Photo" Clicked="TakePhoto_Clicked"
+                        BackgroundColor="#1A6496" TextColor="White"/>
+            </Grid>
+
+            <!-- Result image -->
+            <Border x:Name="ResultBorder"
+                    IsVisible="False"
+                    StrokeShape="RoundRectangle 8"
+                    Stroke="#CC0000"
+                    StrokeThickness="3"
+                    Margin="0,8,0,0">
+                <Image x:Name="ResultImage"
+                       Aspect="AspectFit"
+                       HeightRequest="300"/>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -25,6 +25,7 @@ using System.Media;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Globalization;
 
 namespace MercExchangeLokator
 {
@@ -71,12 +72,17 @@ namespace MercExchangeLokator
         double matchingTolerence = 0.40;
         const double minMatchingTolerance = 0.30;
         const double maxMatchingTolerance = 0.55;
+        const double defaultTargetBandTopRatio = 0.12;
+        const double defaultTargetBandBottomRatio = 0.90;
+        const double minTargetBandGap = 0.05;
+        double targetBandTopRatio = defaultTargetBandTopRatio;
+        double targetBandBottomRatio = defaultTargetBandBottomRatio;
         bool isThresholdUiUpdating = false;
 
         string thresholdStateFilePath => Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             "MercExchangeLokator",
-            "threshold.txt");
+            "detector_state.txt");
 
         public double ScaleFactor
         {
@@ -240,6 +246,14 @@ namespace MercExchangeLokator
                 }
 
                 bool isFound = bestScore >= threshold;
+                if (isFound)
+                {
+                    double centerY = bestLocation.Y + (bestTemplateSize.Height / 2.0d);
+                    double normalizedY = src.Height > 0 ? centerY / src.Height : 0.0d;
+                    if (normalizedY < targetBandTopRatio || normalizedY > targetBandBottomRatio)
+                        isFound = false;
+                }
+
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     this.Title = $"Merc Exchange Lokator v0.1 | score {bestScore:0.000} | thr {threshold:0.000}";
@@ -317,9 +331,9 @@ namespace MercExchangeLokator
             int sh = Snapture.ScreenHeight;
             int sw = Snapture.ScreenWidth;
             int left = 0;
-            int top = (int)Math.Round(sh * 0.12d);
+            int top = 0;
             int width = sw;
-            int height = (int)Math.Round(sh * 0.78d);
+            int height = sh;
 
             if (top < 0) top = 0;
             if (top >= sh) top = 0;
@@ -386,7 +400,7 @@ namespace MercExchangeLokator
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Topmost = true;
-            LoadThresholdFromDisk();
+            LoadDetectorStateFromDisk();
             UpdateThresholdUi();
           
             refImage = new Image<Bgr, byte>(refFile);
@@ -494,7 +508,7 @@ namespace MercExchangeLokator
 
             matchingTolerence = next;
             UpdateThresholdUi();
-            SaveThresholdToDisk();
+            SaveDetectorStateToDisk();
         }
 
         private void UpdateThresholdUi()
@@ -505,6 +519,19 @@ namespace MercExchangeLokator
 
             if (ThresholdSlider != null && Math.Abs(ThresholdSlider.Value - matchingTolerence) > 0.0001)
                 ThresholdSlider.Value = matchingTolerence;
+
+            if (TopBandSlider != null && Math.Abs(TopBandSlider.Value - targetBandTopRatio) > 0.0001)
+                TopBandSlider.Value = targetBandTopRatio;
+
+            if (BottomBandSlider != null && Math.Abs(BottomBandSlider.Value - targetBandBottomRatio) > 0.0001)
+                BottomBandSlider.Value = targetBandBottomRatio;
+
+            if (TopBandValueText != null)
+                TopBandValueText.Text = $"{Math.Round(targetBandTopRatio * 100.0d):0}%";
+
+            if (BottomBandValueText != null)
+                BottomBandValueText.Text = $"{Math.Round(targetBandBottomRatio * 100.0d):0}%";
+
             isThresholdUiUpdating = false;
         }
 
@@ -512,10 +539,50 @@ namespace MercExchangeLokator
         {
             matchingTolerence = 0.40;
             UpdateThresholdUi();
-            SaveThresholdToDisk();
+            SaveDetectorStateToDisk();
         }
 
-        private void SaveThresholdToDisk()
+        private void TopBandSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (isThresholdUiUpdating)
+                return;
+
+            targetBandTopRatio = Math.Round(e.NewValue, 2);
+            if (targetBandTopRatio < 0.0d)
+                targetBandTopRatio = 0.0d;
+
+            if (targetBandTopRatio > targetBandBottomRatio - minTargetBandGap)
+                targetBandBottomRatio = Math.Min(1.0d, Math.Round(targetBandTopRatio + minTargetBandGap, 2));
+
+            UpdateThresholdUi();
+            SaveDetectorStateToDisk();
+        }
+
+        private void BottomBandSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (isThresholdUiUpdating)
+                return;
+
+            targetBandBottomRatio = Math.Round(e.NewValue, 2);
+            if (targetBandBottomRatio > 1.0d)
+                targetBandBottomRatio = 1.0d;
+
+            if (targetBandBottomRatio < targetBandTopRatio + minTargetBandGap)
+                targetBandTopRatio = Math.Max(0.0d, Math.Round(targetBandBottomRatio - minTargetBandGap, 2));
+
+            UpdateThresholdUi();
+            SaveDetectorStateToDisk();
+        }
+
+        private void ZoneResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            targetBandTopRatio = defaultTargetBandTopRatio;
+            targetBandBottomRatio = defaultTargetBandBottomRatio;
+            UpdateThresholdUi();
+            SaveDetectorStateToDisk();
+        }
+
+        private void SaveDetectorStateToDisk()
         {
             try
             {
@@ -523,7 +590,14 @@ namespace MercExchangeLokator
                 if (!Directory.Exists(directory))
                     Directory.CreateDirectory(directory);
 
-                File.WriteAllText(thresholdStateFilePath, matchingTolerence.ToString("0.00"));
+                var lines = new[]
+                {
+                    $"threshold={matchingTolerence.ToString("0.00", CultureInfo.InvariantCulture)}",
+                    $"bandTop={targetBandTopRatio.ToString("0.00", CultureInfo.InvariantCulture)}",
+                    $"bandBottom={targetBandBottomRatio.ToString("0.00", CultureInfo.InvariantCulture)}"
+                };
+
+                File.WriteAllLines(thresholdStateFilePath, lines);
             }
             catch
             {
@@ -531,25 +605,49 @@ namespace MercExchangeLokator
             }
         }
 
-        private void LoadThresholdFromDisk()
+        private void LoadDetectorStateFromDisk()
         {
             try
             {
                 if (!File.Exists(thresholdStateFilePath))
                     return;
 
-                var value = File.ReadAllText(thresholdStateFilePath).Trim();
-                double parsed;
-                if (!double.TryParse(value, out parsed))
-                    return;
+                var lines = File.ReadAllLines(thresholdStateFilePath);
+                foreach (var raw in lines)
+                {
+                    var line = raw.Trim();
+                    if (line.Length == 0 || !line.Contains("="))
+                        continue;
 
-                parsed = Math.Round(parsed, 2);
-                if (parsed < minMatchingTolerance)
-                    parsed = minMatchingTolerance;
-                if (parsed > maxMatchingTolerance)
-                    parsed = maxMatchingTolerance;
+                    var parts = line.Split(new[] { '=' }, 2);
+                    var key = parts[0].Trim();
+                    var value = parts[1].Trim();
+                    double parsed;
 
-                matchingTolerence = parsed;
+                    if (!double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out parsed))
+                        continue;
+
+                    if (key == "threshold")
+                    {
+                        parsed = Math.Round(parsed, 2);
+                        if (parsed < minMatchingTolerance) parsed = minMatchingTolerance;
+                        if (parsed > maxMatchingTolerance) parsed = maxMatchingTolerance;
+                        matchingTolerence = parsed;
+                    }
+                    else if (key == "bandTop")
+                    {
+                        targetBandTopRatio = Math.Round(parsed, 2);
+                    }
+                    else if (key == "bandBottom")
+                    {
+                        targetBandBottomRatio = Math.Round(parsed, 2);
+                    }
+                }
+
+                if (targetBandTopRatio < 0.0d) targetBandTopRatio = 0.0d;
+                if (targetBandBottomRatio > 1.0d) targetBandBottomRatio = 1.0d;
+                if (targetBandBottomRatio < targetBandTopRatio + minTargetBandGap)
+                    targetBandBottomRatio = Math.Min(1.0d, targetBandTopRatio + minTargetBandGap);
             }
             catch
             {

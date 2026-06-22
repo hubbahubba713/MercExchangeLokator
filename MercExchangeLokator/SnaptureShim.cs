@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace com.HellScape.ScreenCapture
 {
@@ -35,8 +36,43 @@ namespace com.HellScape.ScreenCapture
         private static CancellationTokenSource managedCaptureCts;
         private static Task managedCaptureTask;
 
-        public static int ScreenWidth => (int)System.Windows.SystemParameters.PrimaryScreenWidth;
-        public static int ScreenHeight => (int)System.Windows.SystemParameters.PrimaryScreenHeight;
+        public static int ScreenWidth
+        {
+            get
+            {
+                try
+                {
+                    Screen primary = Screen.PrimaryScreen;
+                    if (primary != null)
+                        return primary.Bounds.Width;
+                }
+                catch
+                {
+                    // Ignore and fall back to WPF system metrics.
+                }
+
+                return (int)System.Windows.SystemParameters.PrimaryScreenWidth;
+            }
+        }
+
+        public static int ScreenHeight
+        {
+            get
+            {
+                try
+                {
+                    Screen primary = Screen.PrimaryScreen;
+                    if (primary != null)
+                        return primary.Bounds.Height;
+                }
+                catch
+                {
+                    // Ignore and fall back to WPF system metrics.
+                }
+
+                return (int)System.Windows.SystemParameters.PrimaryScreenHeight;
+            }
+        }
 
         static Snapture()
         {

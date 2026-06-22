@@ -47,9 +47,40 @@
                             Value="0.40"
                             ValueChanged="ThresholdSlider_ValueChanged"/>
                     <TextBlock x:Name="ThresholdValueText" VerticalAlignment="Center" Margin="4,0,6,0" Text="0.40"/>
-                    <Button x:Name="ThresholdResetButton" Height="20" Margin="0,0,4,0" Padding="6,0" Content="Reset 0.40" Click="ThresholdResetButton_Click"/>
+                        <Button x:Name="ThresholdResetButton" Height="20" Margin="0,0,4,0" Padding="6,0" Content="Reset" Click="ThresholdResetButton_Click" ToolBar.OverflowMode="Never"/>
+                        <Separator/>
+                        <TextBlock x:Name="TopBandLabel" VerticalAlignment="Center" Margin="4,0,2,0" Text="Top" ToolBar.OverflowMode="Always"/>
+                        <Slider x:Name="TopBandSlider"
+                            Width="90"
+                            Minimum="0.00"
+                            Maximum="0.80"
+                            SmallChange="0.01"
+                            LargeChange="0.02"
+                            TickFrequency="0.01"
+                            IsSnapToTickEnabled="True"
+                            Value="0.12"
+                                ValueChanged="TopBandSlider_ValueChanged"
+                                ToolBar.OverflowMode="Always"/>
+                            <TextBlock x:Name="TopBandValueText" VerticalAlignment="Center" Margin="3,0,5,0" Text="12%" ToolBar.OverflowMode="Always"/>
+                            <TextBlock x:Name="BottomBandLabel" VerticalAlignment="Center" Margin="2,0,2,0" Text="Bottom" ToolBar.OverflowMode="Always"/>
+                        <Slider x:Name="BottomBandSlider"
+                            Width="90"
+                            Minimum="0.20"
+                            Maximum="1.00"
+                            SmallChange="0.01"
+                            LargeChange="0.02"
+                            TickFrequency="0.01"
+                            IsSnapToTickEnabled="True"
+                            Value="0.90"
+                            ValueChanged="BottomBandSlider_ValueChanged"
+                            ToolBar.OverflowMode="Always"/>
+                    <TextBlock x:Name="BottomBandValueText" VerticalAlignment="Center" Margin="3,0,4,0" Text="90%" ToolBar.OverflowMode="Always"/>
+                    <Button x:Name="ZoneResetButton" Height="20" Margin="0,0,4,0" Padding="6,0" Content="Zone Reset" Click="ZoneResetButton_Click" ToolBar.OverflowMode="Always"/>
                 </ToolBar>
             </ToolBarPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,2,6,2">
+                <Button x:Name="ThresholdResetAlwaysVisibleButton" Height="20" MinWidth="64" Padding="8,0" Content="Reset" Click="ThresholdResetButton_Click"/>
+            </StackPanel>
         </DockPanel>
     </Grid>
 </Window>
